@@ -11,11 +11,16 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
+    "aos": "^2.3.4",
     "firebase": "^11.1.0",
     "flowbite": "^2.5.2",
     "flowbite-react": "^0.10.2",
+    "html2pdf.js": "^0.10.2",
+    "query-string": "^9.1.1",
     "react": "^18.3.1",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.3.1",
+    "react-quill": "^2.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.1",
     "redux-persist": "^6.0.0"

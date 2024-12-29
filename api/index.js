@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.route.js";
-//import userRoute from "./routes/user.route.js";
+import userRoute from "./routes/user.route.js";
+import cakeRoute from "./routes/cake.route.js";
 
 
 dotenv.config();
@@ -34,7 +35,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/api/auth",authRoute);
-//app.use("/api/user",userRoute); 
+app.use("/api/user",userRoute); 
+app.use("/api/cakes",cakeRoute); 
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
