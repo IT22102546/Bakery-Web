@@ -6,10 +6,10 @@ export default function Home() {
     <div>
       Home
       {/*
-        
+        <FeaturedCakes/>
       */}
 
-      <FeaturedCakes/>
+      
       
     </div>
   )

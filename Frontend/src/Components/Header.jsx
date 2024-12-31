@@ -31,7 +31,8 @@ export default function Header() {
   };
 
   return (
-    <Navbar className="border-b-2 relative z-50 bg-pink-400" >
+    <Navbar className="border-b-2 relative z-50" style={{ backgroundColor: "#18A5A7" }}>
+
       <div className="container mx-auto flex items-center justify-between py-4">
 
         {/* Logo */}
@@ -82,9 +83,11 @@ export default function Header() {
                 <DropdownItem>Test2</DropdownItem>
               </Link>
             </Dropdown>
+            {/*
             <NavLink to="/cakes" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               Cakes
             </NavLink>
+            */}
             <NavLink to="/contact" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               Contact Us
             </NavLink>

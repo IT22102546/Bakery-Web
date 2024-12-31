@@ -238,7 +238,7 @@ export default function DashProfile() {
         >
           {loading ? 'Loading..' : 'Update Account'}
         </Button>
-       
+       {/*
         {currentUser.isAdmin && (
           <Link to='/addcake'>
             <Button
@@ -251,7 +251,7 @@ export default function DashProfile() {
             </Button>
           </Link>
         )}   
-
+       */}
        
 
       </form>
