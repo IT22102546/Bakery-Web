@@ -59,7 +59,7 @@ export default function DashSideBar() {
                   Users
                 </Sidebar.Item>
               </Link>
-              {/*
+              
               <Link to='/dashboard?tab=cakes' key="cakes">
                 <Sidebar.Item
                   active={tab === 'cakes'}
@@ -69,7 +69,7 @@ export default function DashSideBar() {
                   Cakes
                 </Sidebar.Item>
               </Link>
-                */}
+               
               <Link to='/dashboard?tab=orders' key="orders">
                 <Sidebar.Item
                   active={tab === 'orders'}
