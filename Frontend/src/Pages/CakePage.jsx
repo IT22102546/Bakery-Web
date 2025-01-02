@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cart/cartSlice';
 import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS styles
+import { FaSearch, FaShoppingCart, FaTag, FaStore } from 'react-icons/fa'; // Import icons
 
 export default function CakePage() {
   const location = useLocation();
@@ -20,12 +21,12 @@ export default function CakePage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser);
 
-  const categories = ['Birthday', 'Wedding', 'Anniversary', 'Custom']; // Example categories
+  const categories = ['Birthday', 'Wedding', 'Anniversary', 'Custom']; 
   const priceRanges = [
     { label: 'Under Rs. 1000', value: '0-1000' },
     { label: 'Rs. 1000 - Rs. 3000', value: '1000-3000' },
-    { label: 'Above Rs. 3000', value: '3000-' },
-  ]; // Example price ranges
+    { label: 'Above Rs. 3000', value: "3000 - 1000000000000" },
+  ];
 
   useEffect(() => {
     fetchProducts();
@@ -58,12 +59,12 @@ export default function CakePage() {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
-    setCurrentPage(1); // Reset to first page when filter changes
+    setCurrentPage(1);
   };
 
   const handlePriceRangeChange = (e) => {
     setSelectedPriceRange(e.target.value);
-    setCurrentPage(1); // Reset to first page when filter changes
+    setCurrentPage(1); 
   };
 
   const handleAddToCart = (product) => {
@@ -86,16 +87,19 @@ export default function CakePage() {
     <div className="flex container mx-auto py-6">
       {/* Sidebar Filters */}
       <div className="w-1/4 p-4 bg-gray-100 rounded-lg shadow-lg">
-        <h3 className="text-xl font-semibold mb-4">Filters</h3>
+        <h3 className="text-xl font-semibold mb-4 text-center">Filters</h3>
         
         <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Search cakes..."
-            className="border px-4 py-2 rounded w-full"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
+          <div className="flex items-center border px-4 py-2 rounded w-full">
+            <FaSearch className="mr-2" />
+            <input
+              type="text"
+              placeholder="Search cakes..."
+              className="w-full outline-none"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
         </div>
 
         <div className="mb-4">
@@ -137,7 +141,7 @@ export default function CakePage() {
           {products.map((product) => (
             <div
               key={product._id}
-              className="border rounded-lg shadow-lg p-4"
+              className="border rounded-lg shadow-lg p-4 hover:shadow-xl transition-all"
               data-aos="fade-up"
               data-aos-duration="500"
             >
@@ -145,19 +149,36 @@ export default function CakePage() {
                 <img
                   src={product.images[0]}
                   alt={product.title}
-                  className="w-full h-60 object-cover mb-4"
+                  className="w-full h-60 object-cover mb-4 rounded"
                 />
               </Link>
-              <h3 className="text-lg font-semibold text-center mb-2">
+              <h3 className="text-lg font-semibold text-center mb-2 hover:text-blue-600">
                 <Link to={`/cake/${product.slug}`}>{product.title}</Link>
               </h3>
-              <p className="text-center text-gray-600">Price: Rs. {product.price}</p>
+              <div className="text-center flex justify-center items-center space-x-2 text-gray-600">
+                <FaTag />
+                <p>Price: Rs. {product.price}</p>
+              </div>
+              <div className="text-center flex justify-center items-center space-x-2">
+                <FaTag />
+                <p
+                  className={`${
+                    product.isAvailable ? 'text-green-600' : 'text-red-600'
+                  } font-semibold`}
+                >
+                  {product.isAvailable ? 'In Stock' : 'Out of Stock'}
+                </p>
+              </div>
+              <div className="text-center flex justify-center items-center space-x-2 text-gray-600">
+                <FaStore />
+                <p>Shop: {product.userId?.username}</p> 
+              </div>
               <div className="flex justify-center mt-4 space-x-2">
                 <button
-                  className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
+                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all"
                   onClick={() => handleAddToCart(product)}
                 >
-                  Add to Cart
+                  <FaShoppingCart className="inline mr-2" /> Add to Cart
                 </button>
               </div>
             </div>
@@ -177,9 +198,7 @@ export default function CakePage() {
             <button
               key={index}
               onClick={() => handlePageChange(index + 1)}
-              className={`px-4 py-2 mx-1 rounded ${
-                currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200'
-              }`}
+              className={`px-4 py-2 mx-1 rounded ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
               {index + 1}
             </button>

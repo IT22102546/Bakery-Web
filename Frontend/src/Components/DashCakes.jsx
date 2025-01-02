@@ -17,7 +17,7 @@ export default function DashCake() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(`/api/cakes/getcakes?searchTerm=${searchTerm}`);
+        const res = await fetch(`/api/cakes/getadmincakes?searchTerm=${searchTerm}`);
         const data = await res.json();
         if (res.ok) {
           setUserProduct(data.products);
@@ -160,6 +160,52 @@ export default function DashCake() {
     }
   };
 
+  const handleunavailable = async (productId) => {
+    try {
+      const res = await fetch(`/api/cakes/unavailable/${productId}/${currentUser._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setUserProduct((prev) =>
+          prev.map((product) =>
+            product._id === productId ? { ...product, isAvailable: false } : product
+          )
+        );
+      } else {
+        console.log(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleAvailable = async (productId) => {
+    try {
+      const res = await fetch(`/api/cakes/available/${productId}/${currentUser._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setUserProduct((prev) =>
+          prev.map((product) =>
+            product._id === productId ? { ...product, isAvailable: true } : product
+          )
+        );
+      } else {
+        console.log(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       <div className='flex justify-between'>
@@ -212,6 +258,7 @@ export default function DashCake() {
               <Table.HeadCell>Cake Title</Table.HeadCell>
               <Table.HeadCell>Category</Table.HeadCell>
               <Table.HeadCell>Type</Table.HeadCell>
+              <Table.HeadCell>Availability</Table.HeadCell>
               <Table.HeadCell>Feature</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
               <Table.HeadCell>Edit</Table.HeadCell>
@@ -236,6 +283,18 @@ export default function DashCake() {
                   </Table.Cell>
                   <Table.Cell>{product.category}</Table.Cell>
                   <Table.Cell>{product.type}</Table.Cell>
+
+                  <Table.Cell>
+                    {product.isAvailable ? (
+                      <Button color='failure' onClick={() => handleunavailable(product._id)}>
+                        Make Unavailble
+                      </Button>
+                    ) : (
+                      <Button color='success' onClick={() => handleAvailable(product._id)}>
+                        Make Available
+                      </Button>
+                    )}
+                  </Table.Cell>
                  
                   <Table.Cell>
                     {product.isfeature ? (

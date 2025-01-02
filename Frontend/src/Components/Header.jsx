@@ -83,11 +83,11 @@ export default function Header() {
                 <DropdownItem>Test2</DropdownItem>
               </Link>
             </Dropdown>
-            {/*
+            
             <NavLink to="/cakes" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               Cakes
             </NavLink>
-            */}
+            
             <NavLink to="/contact" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               Contact Us
             </NavLink>

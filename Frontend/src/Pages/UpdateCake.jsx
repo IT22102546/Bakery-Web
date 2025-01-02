@@ -130,7 +130,7 @@ export default function UpdateCake() {
             <option value='uncategorized'>Uncategoried</option>
             <option value='Birthday'>Birthday Cakes</option>
             <option value='Wedding'>Wedding Cakes</option>
-            <option value='Custome'>Custome Cakes</option>
+            <option value='Custom'>Custom Cakes</option>
           </Select>
         </div>
         {[0, 1, 2, 3].map((index) => (

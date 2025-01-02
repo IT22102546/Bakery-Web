@@ -48,7 +48,7 @@ export default function DashSideBar() {
             </Sidebar.Item>
           </Link>
 
-          {currentUser?.isAdmin && (
+          {currentUser?.isAdmin && currentUser?.isOwner && (
             <>
               <Link to='/dashboard?tab=users' key="users">
                 <Sidebar.Item
@@ -59,6 +59,17 @@ export default function DashSideBar() {
                   Users
                 </Sidebar.Item>
               </Link>
+              
+             
+          
+              
+            </>
+
+)}
+
+{currentUser?.isAdmin &&  (
+            <>
+              
               
               <Link to='/dashboard?tab=cakes' key="cakes">
                 <Sidebar.Item
@@ -79,14 +90,13 @@ export default function DashSideBar() {
                   Orders
                 </Sidebar.Item>
               </Link>
-
-             
-             
-              
-             
+          
               
             </>
-          )}
+
+)}
+
+
 
           <Sidebar.Item 
             icon={HiArrowSmRight} 
