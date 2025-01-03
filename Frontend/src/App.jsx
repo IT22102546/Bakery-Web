@@ -12,6 +12,8 @@ import PostCake from './Pages/PostCake'
 import Cart from './Pages/Cart'
 import CakePage from './Pages/CakePage'
 import UpdateCake from './Pages/UpdateCake'
+import OrderSummary from './Pages/OrderSummary'
+import CheckoutSuccess from './Pages/CheckoutSuccess'
 
 
 
@@ -29,6 +31,8 @@ export default function App() {
       <Route element={<PrivateRoute/>}/>
         <Route path="/dashboard" element={<DashBoard/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/order-summary" element={<OrderSummary/>}/>
+        <Route path="/order-pay-success" element={<CheckoutSuccess/>}/>
       <Route/>
 
       <Route element={<OnlyAdminPrivateRoute/>}>

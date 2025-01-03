@@ -4,6 +4,7 @@ import DashSideBar from "../Components/DashSideBar";
 import DashProfile from "../Components/DashProfile";
 import DashUsers from "../Components/DashUsers";
 import DashCake from "../Components/DashCakes";
+import DashOrders from "../Components/DashOrders";
 
 
 export default function DashBoard() {
@@ -26,6 +27,7 @@ export default function DashBoard() {
       {tab==='profile' && <DashProfile/>}
       {tab === 'users' && <DashUsers/>}
       {tab === 'cakes' && <DashCake/>}
+      {tab == 'orders' && <DashOrders/>}
 
       {/*
 
@@ -35,7 +37,7 @@ export default function DashBoard() {
         {tab === 'achievements' && <DashAchievement/>}
         {tab === 'bearer' && <DashBearers/>}
         {tab === 'activities' && <DashActivities/>}
-        {tab == 'orders' && <DashOrders/>}
+        
       
       */}
       

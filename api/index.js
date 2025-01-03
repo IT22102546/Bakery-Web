@@ -6,6 +6,8 @@ import mongoose from "mongoose";
 import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
 import cakeRoute from "./routes/cake.route.js";
+import stripeRoute from "./routes/stripe.route.js";
+import orderRoute from "./routes/order.route.js";
 
 
 dotenv.config();
@@ -37,6 +39,9 @@ app.use(cors(corsOptions));
 app.use("/api/auth",authRoute);
 app.use("/api/user",userRoute); 
 app.use("/api/cakes",cakeRoute); 
+app.use("/api/stripe",stripeRoute); 
+app.use("/api/order",orderRoute); 
+
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
