@@ -74,15 +74,10 @@ export default function Header() {
             </Dropdown>
 
             
-
-            <Dropdown label={<span className={isNewsActive ? "text-black" : "text-white"}>DropDown 2</span>} inline>
-              <Link to="#">
-                <DropdownItem>Test1</DropdownItem>
-              </Link>
-              <Link to="#">
-                <DropdownItem>Test2</DropdownItem>
-              </Link>
-            </Dropdown>
+            <NavLink to="/design" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+              Design Cake
+            </NavLink>
+            
             
             <NavLink to="/cakes" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               Cakes

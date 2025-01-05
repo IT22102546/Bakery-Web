@@ -14,6 +14,8 @@ import CakePage from './Pages/CakePage'
 import UpdateCake from './Pages/UpdateCake'
 import OrderSummary from './Pages/OrderSummary'
 import CheckoutSuccess from './Pages/CheckoutSuccess'
+import DesignCake from './Pages/DesignCake'
+import DesignForm from './Pages/DesignForm'
 
 
 
@@ -27,12 +29,14 @@ export default function App() {
         <Route path="/sign-in" element={<SignIn/>}/>
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/cakes" element={<CakePage/>}/>
+        <Route path="/design" element={<DesignCake/>}/>
 
       <Route element={<PrivateRoute/>}/>
         <Route path="/dashboard" element={<DashBoard/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/order-summary" element={<OrderSummary/>}/>
         <Route path="/order-pay-success" element={<CheckoutSuccess/>}/>
+        <Route path="/designform" element={<DesignForm/>}/>
       <Route/>
 
       <Route element={<OnlyAdminPrivateRoute/>}>

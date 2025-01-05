@@ -16,17 +16,17 @@ export default function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.username || !formData.email || !formData.password || !formData.mobile || !formData.adress ) {
-            return setError('Please Fill all Fields');
+        if (!formData.username || !formData.email || !formData.password || !formData.mobile || !formData.adress) {
+            return setError("Please Fill all Fields");
         }
 
         try {
             setLoading(true);
             setError(false);
-            const res = await fetch('/api/auth/signup', {
-                method: 'POST',
+            const res = await fetch("/api/auth/signup", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(formData),
             });
@@ -38,7 +38,7 @@ export default function SignUp() {
                 setError(data.message);
                 return;
             }
-            navigate('/sign-in');
+            navigate("/sign-in");
         } catch (error) {
             setLoading(false);
             setError(error.message);
@@ -54,9 +54,9 @@ export default function SignUp() {
             className="min-h-screen flex items-center justify-center"
             style={{
                 backgroundImage: ``,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
             }}
         >
             <div className="p-6 max-w-lg w-full bg-white bg-opacity-80 rounded-lg shadow-lg">
@@ -66,12 +66,10 @@ export default function SignUp() {
                         <Label value="Your username" />
                         <TextInput type="text" placeholder="Username" id="username" onChange={handleChange} />
                     </div>
-                    
                     <div>
                         <Label value="Your email" />
                         <TextInput type="email" placeholder="name@company.com" id="email" onChange={handleChange} />
                     </div>
-                    
                     <div>
                         <Label value="Your Address" />
                         <TextInput type="text" placeholder="Address" id="adress" onChange={handleChange} />
@@ -140,14 +138,14 @@ export default function SignUp() {
                             </button>
                         </div>
                     </div>
-                    <Button disabled={loading} type="submit" className="bg-slate-500">
+                    <Button disabled={loading} type="submit" className="bg-[#18A5A7]">
                         {loading ? (
                             <>
                                 <Spinner size="sm" />
                                 <span className="pl-3">Loading</span>
                             </>
                         ) : (
-                            'Sign Up'
+                            "Sign Up"
                         )}
                     </Button>
                     <OAuthenticate />

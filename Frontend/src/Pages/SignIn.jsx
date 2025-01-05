@@ -1,6 +1,6 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInStart, signInSuccess, singInFailure } from '../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import OAuthenticate from "../Components/OAuthenticate";
@@ -85,27 +85,32 @@ export default function SignIn() {
                             </button>
                         </div>
                     </div>
-                    <Button className="bg-slate-500" disabled={loading} gradientDuoTone='purpleToBlue' type="submit">
+                    <Button 
+                        className="bg-[#18A5A7]" 
+                        disabled={loading} 
+                        gradientDuoTone="cyanToBlue" 
+                        type="submit"
+                    >
                         {loading ? (
                             <>
-                                <Spinner size='sm' />
+                                <Spinner size="sm" />
                                 <span className="pl-3">Loading</span>
                             </>
                         ) : 'Sign In'}
                     </Button>
                     <OAuthenticate />
                 </form>
-                <div className="flex gap-2 text-sm mt-5 ">
+                <div className="flex gap-2 text-sm mt-5">
                     <span>Forgot Password?</span>
                     <Link to='/forgetPassword' className="text-blue-500">Click Here</Link>
                 </div>
-                <div className="flex gap-2 text-sm mt-5 ">
+                <div className="flex gap-2 text-sm mt-5">
                     <span>Don't have an account?</span>
                     <Link to='/sign-up' className="text-blue-500">Sign Up</Link>
                 </div>
                 <div className="text-red-600">
                     {error && (
-                        <Alert className="mt-5" color='failure'>
+                        <Alert className="mt-5" color="failure">
                             {error}
                         </Alert>
                     )}
