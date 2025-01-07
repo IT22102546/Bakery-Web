@@ -21,6 +21,8 @@ import AboutUs from './Pages/AboutUs'
 import Booking from './Pages/Booking'
 import Sweets from './Pages/Sweets'
 import AddSweets from './Pages/AddSweets'
+import PostSweet from './Pages/PostSweet'
+import UpdateSweet from './Pages/UpdateSweets'
 
 
 
@@ -52,8 +54,9 @@ export default function App() {
       <Route element={<OnlyAdminPrivateRoute/>}>
           <Route path="/addcake" element={<AddCakes/>} />
           <Route path="/cake/:cakeSlug" element={<PostCake/>} />
-          <Route path="/cake/:cakeSlug" element={<PostCake/>} />
+          <Route path="/sweet/:sweetSlug" element={<PostSweet/>} />
           <Route path="/update-cake/:productId" element={<UpdateCake/>}/>
+          <Route path="/update-sweet/:productId" element={<UpdateSweet/>}/>
           <Route path="/addsweets" element={<AddSweets/>}/>
       </Route>
 

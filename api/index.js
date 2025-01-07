@@ -9,6 +9,7 @@ import cakeRoute from "./routes/cake.route.js";
 import stripeRoute from "./routes/stripe.route.js";
 import orderRoute from "./routes/order.route.js";
 import designRoute from "./routes/design.route.js";
+import sweetRoute from "./routes/sweet.route.js";
 
 
 dotenv.config();
@@ -43,6 +44,7 @@ app.use("/api/cakes",cakeRoute);
 app.use("/api/stripe",stripeRoute); 
 app.use("/api/order",orderRoute); 
 app.use("/api/designs",designRoute); 
+app.use("/api/sweets",sweetRoute); 
 
 
 app.use((err,req,res,next)=>{

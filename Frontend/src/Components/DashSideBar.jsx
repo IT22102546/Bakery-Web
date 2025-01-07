@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { signOut } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
+import { FaGift } from "react-icons/fa";
 
 export default function DashSideBar() {
   const dispatch = useDispatch();
@@ -78,6 +79,16 @@ export default function DashSideBar() {
                   as='div'
                 >
                   Cakes
+                </Sidebar.Item>
+              </Link>
+
+              <Link to='/dashboard?tab=sweets' key="sweets">
+                <Sidebar.Item
+                  active={tab === 'cakes'}
+                  icon={FaGift}
+                  as='div'
+                >
+                  Sweets
                 </Sidebar.Item>
               </Link>
                
