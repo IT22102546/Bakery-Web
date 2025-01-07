@@ -16,6 +16,11 @@ import OrderSummary from './Pages/OrderSummary'
 import CheckoutSuccess from './Pages/CheckoutSuccess'
 import DesignCake from './Pages/DesignCake'
 import DesignForm from './Pages/DesignForm'
+import Footer from './Components/Footer'
+import AboutUs from './Pages/AboutUs'
+import Booking from './Pages/Booking'
+import Sweets from './Pages/Sweets'
+import AddSweets from './Pages/AddSweets'
 
 
 
@@ -30,6 +35,11 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/cakes" element={<CakePage/>}/>
         <Route path="/design" element={<DesignCake/>}/>
+        <Route path="/aboutus" element={<AboutUs/>}/>
+        <Route path="/booking" element={<Booking/>}/>
+        <Route path="/sweets" element={<Sweets/>}/>
+        
+
 
       <Route element={<PrivateRoute/>}/>
         <Route path="/dashboard" element={<DashBoard/>}/>
@@ -44,9 +54,14 @@ export default function App() {
           <Route path="/cake/:cakeSlug" element={<PostCake/>} />
           <Route path="/cake/:cakeSlug" element={<PostCake/>} />
           <Route path="/update-cake/:productId" element={<UpdateCake/>}/>
+          <Route path="/addsweets" element={<AddSweets/>}/>
       </Route>
 
+     
+
       </Routes>
+
+      <Footer/>
     </BrowserRouter>
   )
 }

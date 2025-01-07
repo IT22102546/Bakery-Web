@@ -250,7 +250,20 @@ export default function DashProfile() {
               Add Cakes
             </Button>
           </Link>
-        )}   
+        )}  
+
+        {currentUser.isAdmin && (
+          <Link to='/addsweets'>
+            <Button
+              type='button'
+               gradientDuoTone='purpleToBlue'
+              className='w-full , text-black bg-slate-400 '
+              outline
+            >
+              Add Sweets.
+            </Button>
+          </Link>
+        )} 
        
        
 

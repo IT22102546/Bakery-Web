@@ -115,7 +115,7 @@ export const featureCake = async (req, res, next) => {
 
     const updatedCake = await Cake.findByIdAndUpdate(
       req.params.productId,
-      { $set: { isfeature: true } },
+      { $set: { isFeature: true } },
       { new: true }
     );
     res.status(200).json(updatedCake);
@@ -132,7 +132,7 @@ export const unfeatureCake = async (req, res, next) => {
 
     const updatedCake = await Cake.findByIdAndUpdate(
       req.params.productId,
-      { $set: { isfeature: false } },
+      { $set: { isFeature: false } },
       { new: true }
     );
     res.status(200).json(updatedCake);
@@ -179,7 +179,7 @@ export const unavailable = async (req, res, next) => {
 
 export const getFeaturedCakes = async (req, res, next) => {
   try {
-    const featuredCakes = await Cake.find({ isfeature: true });
+    const featuredCakes = await Cake.find({ isFeature: true });
     res.status(200).json(featuredCakes);
   } catch (error) {
     next(error);

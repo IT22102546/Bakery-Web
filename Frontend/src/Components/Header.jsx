@@ -31,7 +31,7 @@ export default function Header() {
   };
 
   return (
-    <Navbar className="border-b-2 relative z-50" style={{ backgroundColor: "#18A5A7" }}>
+    <Navbar className="border-b-2 relative z-50 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600" >
 
       <div className="container mx-auto flex items-center justify-between py-4">
 
@@ -52,39 +52,25 @@ export default function Header() {
             <NavLink to="/" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               Home
             </NavLink>
-            <Dropdown label={<span className={isAboutUsActive ? "text-black" : "text-white"}>About Us</span>} inline>
-              <Link to="#">
-                <DropdownItem>Test1</DropdownItem>
-              </Link>
-              <Link to="#">
-                <DropdownItem>Test2</DropdownItem>
-              </Link>
-              <Link to="#">
-                <DropdownItem>Test</DropdownItem>
-              </Link>
-            </Dropdown>
 
-            <Dropdown label={<span className={isTeamActive ? "text-black" : "text-white"}>DropDown</span>} inline>
-              <Link to="/apply-membership">
-                <DropdownItem>Test1</DropdownItem>
-              </Link>
-              <Link to="/bearers">
-                <DropdownItem>Test2</DropdownItem>
-              </Link>
-            </Dropdown>
+            <NavLink to="/cakes" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+              Cakes
+            </NavLink>
 
-            
+            <NavLink to="/sweets" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+              Sweets
+            </NavLink>
+
+            <NavLink to="/booking" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+            Booking
+          </NavLink>
+
             <NavLink to="/design" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               Design Cake
             </NavLink>
             
-            
-            <NavLink to="/cakes" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
-              Cakes
-            </NavLink>
-            
-            <NavLink to="/contact" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
-              Contact Us
+            <NavLink to="/aboutus" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+              About Us
             </NavLink>
 
           </div>
@@ -135,38 +121,20 @@ export default function Header() {
           <NavLink to="/" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
             Home
           </NavLink>
-          <Dropdown label={<span className={isAboutUsActive ? "text-black" : "text-white"}>About Us</span>} inline>
-            <Link to="/history">
-              <DropdownItem>History</DropdownItem>
-            </Link>
-            <Link to="/achievements">
-              <DropdownItem>Achievements</DropdownItem>
-            </Link>
-          </Dropdown>
-          <Dropdown label={<span className={isTeamActive ? "text-black" : "text-white"}>Team</span>} inline>
-            <Link to="/apply-membership">
-              <DropdownItem>Membership</DropdownItem>
-            </Link>
-            <Link to="/bearers">
-              <DropdownItem>Office Bearers</DropdownItem>
-            </Link>
-          </Dropdown>
-          <NavLink to="/photo" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
-            Photos
+          <NavLink to="/cakes" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+            Cakes
           </NavLink>
-          <Dropdown label={<span className={isNewsActive ? "text-black" : "text-white"}>News</span>} inline>
-            <Link to="/article">
-              <DropdownItem>Articles</DropdownItem>
-            </Link>
-            <Link to="/activities">
-              <DropdownItem>Guid Activities</DropdownItem>
-            </Link>
-          </Dropdown>
-          <NavLink to="/product-page" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
-            Scout Shop
+          <NavLink to="/sweets" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+            Sweets
           </NavLink>
-          <NavLink to="/contact" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
-            Contact Us
+          <NavLink to="/booking" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+            Booking
+          </NavLink>
+          <NavLink to="/design" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+            Design cake
+          </NavLink>
+          <NavLink to="/aboutus" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+            About Us
           </NavLink>
         </div>
       </Navbar.Collapse>

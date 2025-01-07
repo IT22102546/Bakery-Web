@@ -319,3 +319,22 @@ export const resignAdmin = async (req, res, next) =>{
   }
   
 };
+
+export const getUserById = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    
+    // Find the user by userId
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Respond with the user's username
+    res.status(200).json({ username: user.username });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

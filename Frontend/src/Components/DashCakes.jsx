@@ -118,22 +118,21 @@ export default function DashCake() {
     try {
       const res = await fetch(`/api/cakes/featurecake/${productId}/${currentUser._id}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
       });
       const data = await res.json();
       if (res.ok) {
+        console.log("Feature Updated Successfully: ", data);
         setUserProduct((prev) =>
           prev.map((product) =>
-            product._id === productId ? { ...product, isfeature: true } : product
+            product._id === productId ? { ...product, isFeature: true } : product
           )
         );
       } else {
         console.log(data.message);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log("Error in assigning feature: ", error.message);
     }
   };
 
@@ -149,7 +148,7 @@ export default function DashCake() {
       if (res.ok) {
         setUserProduct((prev) =>
           prev.map((product) =>
-            product._id === productId ? { ...product, isfeature: false } : product
+            product._id === productId ? { ...product, isFeature: false } : product
           )
         );
       } else {
@@ -297,13 +296,13 @@ export default function DashCake() {
                   </Table.Cell>
                  
                   <Table.Cell>
-                    {product.isfeature ? (
+                    {product.isFeature ? (
                       <Button color='failure' onClick={() => handleReassignFeature(product._id)}>
-                        Reassign from Feature
+                        Reassign from Signature
                       </Button>
                     ) : (
                       <Button color='success' onClick={() => handleAssignFeature(product._id)}>
-                        Assign as Feature
+                        Assign as Signature
                       </Button>
                     )}
                   </Table.Cell>
