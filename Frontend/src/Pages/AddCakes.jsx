@@ -151,7 +151,10 @@ export default function AddCakes() {
         <Select onChange={(e) => setFormData({ ...formData, type: e.target.value })}>
             <option value='uncategorized'>Uncategoried</option>
             <option value='Vegan'>Vegan</option>
+            <option value='GlutonFree'>Non-vegan</option>
+            <option value='GlutonFree'>Sugar-Free</option>
             <option value='GlutonFree'>GLuton-Free</option>
+            <option value='GlutonFree'>Halal</option>
         </Select>
         </div>
         <Button type='submit' className="bg-slate-400">Add Cake</Button>

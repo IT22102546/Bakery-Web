@@ -10,6 +10,9 @@ import stripeRoute from "./routes/stripe.route.js";
 import orderRoute from "./routes/order.route.js";
 import designRoute from "./routes/design.route.js";
 import sweetRoute from "./routes/sweet.route.js";
+import rideRequestRoutes from "./routes/rideRequest.routes.js";
+import shopRequestRoutes from "./routes/shopRequest.routes.js";
+
 
 
 dotenv.config();
@@ -45,6 +48,8 @@ app.use("/api/stripe",stripeRoute);
 app.use("/api/order",orderRoute); 
 app.use("/api/designs",designRoute); 
 app.use("/api/sweets",sweetRoute); 
+app.use("/api/ridereq", rideRequestRoutes);
+app.use("/api/shopreq", shopRequestRoutes);
 
 
 app.use((err,req,res,next)=>{

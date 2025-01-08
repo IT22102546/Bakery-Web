@@ -1,6 +1,6 @@
 import express  from "express";
 import { verifyToken } from "../utils/verifyUser.js";
-import { assignAdmin, deleteUser, forgetpassword, getAdmins, getCustomers, getUser, getUserById, getUsers, resetpassword, resignAdmin, signout, test, updateResetPassword, updateUser } from "../controllers/user.controller.js";
+import { assignAdmin, deleteUser, forgetpassword, getAdmins, getCustomers, getRiders, getUser, getUserById, getUsers, resetpassword, resignAdmin, signout, test, updateResetPassword, updateUser } from "../controllers/user.controller.js";
 
 
 const router = express.Router();
@@ -12,6 +12,7 @@ router.put("/assignadmin/:id" , verifyToken , assignAdmin);
 router.put("/resignadmin/:id" , verifyToken , resignAdmin);
 router.get('/signout',signout);
 router.get('/getadmins', getAdmins);
+router.get('/getriders', getRiders);
 router.get('/getcustomers', getCustomers);
 router.get('/getusers', verifyToken, getUsers);
 router.post('/forgetpassword',forgetpassword);

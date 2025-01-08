@@ -23,6 +23,9 @@ import Sweets from './Pages/Sweets'
 import AddSweets from './Pages/AddSweets'
 import PostSweet from './Pages/PostSweet'
 import UpdateSweet from './Pages/UpdateSweets'
+import Career from './Pages/Career'
+import DeliverySignUp from './Pages/DeliverySignUp'
+import ShopSignUp from './Pages/ShopSignUp'
 
 
 
@@ -40,6 +43,9 @@ export default function App() {
         <Route path="/aboutus" element={<AboutUs/>}/>
         <Route path="/booking" element={<Booking/>}/>
         <Route path="/sweets" element={<Sweets/>}/>
+        <Route path="/careers" element={<Career/>}/>
+        <Route path="/signupdelivery" element={<DeliverySignUp/>}/>
+        <Route path="/signupshops" element={<ShopSignUp/>}/>
         
 
 

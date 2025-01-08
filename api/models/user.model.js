@@ -37,6 +37,18 @@ const userSchema = new mongoose.Schema({
 
     },
 
+    IdNumber:{
+        type:String,
+        unique:true
+
+    },
+
+    age:{
+        type: Number
+       
+
+    },
+
 
     isAdmin:{
         type:Boolean,
@@ -48,7 +60,7 @@ const userSchema = new mongoose.Schema({
         default:false
     },
 
-    isMember:{
+    isRider:{
         type:Boolean,
         default:false
     },

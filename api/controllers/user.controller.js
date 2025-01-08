@@ -59,6 +59,8 @@ export const updateUser = async (req,res,next) => {
                 profilePicture:req.body.profilePicture,
                 adress:req.body.adress,
                 mobile:req.body.mobile,
+                age:req.body.mobile,
+                IdNumber:req.body.IdNumber
              
 
             }
@@ -274,6 +276,17 @@ export const getAdmins = async (req, res, next) => {
     res.status(200).json({ admins });
   } catch (error) {
     console.error("Error in getAdmins controller:", error);
+    res.status(500).json({ status: 500, message: "Internal server error" });
+  }
+};
+
+export const getRiders = async (req, res, next) => {
+  try {
+    
+    const admins = await User.find({ isRider: true });
+    res.status(200).json({ admins });
+  } catch (error) {
+    console.error("Error in getRiders controller:", error);
     res.status(500).json({ status: 500, message: "Internal server error" });
   }
 };

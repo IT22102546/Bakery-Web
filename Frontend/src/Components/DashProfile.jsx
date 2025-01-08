@@ -185,9 +185,11 @@ export default function DashProfile() {
         <TextInput
           type='text'
           id='username'
-          placeholder='username'
-          defaultValue={currentUser.username} onChange={handleChange}
+          placeholder={currentUser.isAdmin ? 'Shop Name' : 'username'}
+          defaultValue={currentUser.username}
+          onChange={handleChange}
         />
+
 
        
         <TextInput
@@ -209,6 +211,25 @@ export default function DashProfile() {
           placeholder='mobile'
           defaultValue={currentUser.mobile} onChange={handleChange}
         />
+        {currentUser.isRider && (
+  <>
+    <TextInput
+      type="number"
+      id="age"
+      placeholder="age"
+      defaultValue={currentUser.age}
+      onChange={handleChange}
+    />
+    <TextInput
+      type="text"
+      id="Idnumber"
+      placeholder="Idnumber"
+      defaultValue={currentUser.IdNumber}
+      onChange={handleChange}
+    />
+  </>
+)}
+
         <div>
                            
                             <div className="relative">

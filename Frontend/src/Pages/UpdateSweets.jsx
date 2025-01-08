@@ -165,7 +165,7 @@ export default function UpdateSweet() {
           } value={formData.price || ''} />
         
         </div>
-        <Button type='submit' gradientDuoTone='purpleToBlue'>Update Cake</Button>
+        <Button type='submit' gradientDuoTone='purpleToBlue'>Update Sweets</Button>
         {publishError && (
           <Alert className='mt-5' color='failure'>
             {publishError}

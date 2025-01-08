@@ -6,6 +6,8 @@ import DashUsers from "../Components/DashUsers";
 import DashCake from "../Components/DashCakes";
 import DashOrders from "../Components/DashOrders";
 import DashSweets from "../Components/DashSweets";
+import DashRiderRequests from "../Components/DashRiderRequests";
+import DashShopRequests from "../Components/DashShopRequests";
 
 
 export default function DashBoard() {
@@ -30,6 +32,8 @@ export default function DashBoard() {
       {tab === 'cakes' && <DashCake/>}
       {tab == 'orders' && <DashOrders/>}
       {tab == 'sweets' && <DashSweets/>}
+      {tab == 'riderreq' && <DashRiderRequests/>}
+      {tab == 'shopreq' && <DashShopRequests/>}
 
       {/*
 

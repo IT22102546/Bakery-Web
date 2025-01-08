@@ -22,6 +22,7 @@ export default function DashUsers() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAdminsOnly, setShowAdminsOnly] = useState(false); 
   const [showCustomersOnly, setShowCustomersOnly] = useState(false); 
+  const [showRidersOnly, setshowRidersOnly] = useState(false); 
   const [showAccessConfirmation, setShowAccessConfirmation] = useState(false);
   const [showAccessDeclaration, setShowAccessDeclaration] = useState(false);
 
@@ -44,6 +45,20 @@ export default function DashUsers() {
       const fetchCustomers = async () => {
         try {
           const res = await fetch('/api/user/getcustomers');
+          const data = await res.json();
+          if (res.ok) {
+            setUsers(data.admins);
+          }
+          setShowMore(false);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      fetchCustomers();
+    } else if (showRidersOnly) {
+      const fetchCustomers = async () => {
+        try {
+          const res = await fetch('/api/user/getriders');
           const data = await res.json();
           if (res.ok) {
             setUsers(data.admins);
@@ -83,7 +98,7 @@ export default function DashUsers() {
         fetchAllUsers();
       }
     }
-  }, [currentUser._id, searchTerm, showAdminsOnly,showCustomersOnly]);
+  }, [currentUser._id, searchTerm, showAdminsOnly,showCustomersOnly,showRidersOnly]);
   
 
   
@@ -198,6 +213,11 @@ export default function DashUsers() {
   
   };
 
+  const handleCheckboxChangeRide = (e) => {
+    setshowRidersOnly(e.target.checked);
+  
+  };
+
   const handleAssignAdmin = async () => {
     try {
       const res = await fetch(`/api/user/assignadmin/${userIdToAssignAdmin}`, {
@@ -255,7 +275,7 @@ export default function DashUsers() {
        
       <div>
         <label>
-          Show Admins Only:
+          Show Shops Only:
           <input
             type="checkbox"
             checked={showAdminsOnly}
@@ -274,6 +294,19 @@ export default function DashUsers() {
             className="ml-2"
           />
         </label>
+        
+      </div>
+      <div>
+        <label>
+          Show Riders Only:
+          <input
+            type="checkbox"
+            checked={showRidersOnly}
+            onChange={handleCheckboxChangeRide}
+            className="ml-2"
+          />
+        </label>
+        
       </div>
       <Button
         gradientDuoTone='purpleToBlue'
@@ -308,7 +341,7 @@ export default function DashUsers() {
           <div className='flex justify-between'>
             <div className=''>
               <h3 className='text-gray-500 text-md uppercase'>
-                Total Admins
+                Total Shops
               </h3>
               <p className='text-2xl'>{totalAdmins}</p>
             </div>
@@ -325,7 +358,7 @@ export default function DashUsers() {
         <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
           <div className='flex justify-between'>
             <div className=''>
-              <h3 className='text-gray-500 text-md uppercase'>Total Users (Admin+Customers)</h3>
+              <h3 className='text-gray-500 text-md uppercase'>Total Users (Shops+Customers)</h3>
               <p className='text-2xl'>{totalUsers}</p>
             </div>
             <HiOutlineUserGroup className='bg-indigo-600 text-white rounded-full text-5xl p-3 shadow-lg' />
@@ -349,9 +382,10 @@ export default function DashUsers() {
               <Table.HeadCell>User image</Table.HeadCell>
               <Table.HeadCell>Username</Table.HeadCell>
               <Table.HeadCell>Email</Table.HeadCell>
-              <Table.HeadCell>Admin</Table.HeadCell>
+              <Table.HeadCell>Shop</Table.HeadCell>
+              <Table.HeadCell>Rider</Table.HeadCell>
               <Table.HeadCell>Remove</Table.HeadCell>
-              {currentUser.isOwner && <Table.HeadCell>Assign Admin</Table.HeadCell>}
+              
             </Table.Head>
             {users.map((user) => (
               <Table.Body className='divide-y ' key={user._id}>
@@ -377,6 +411,14 @@ export default function DashUsers() {
                    
                   </Table.Cell>
                   <Table.Cell>
+                    {user.isRider  ? (
+                      <FaCheck className='text-green-500' />
+                    ) : (
+                      <FaTimes className='text-red-500' />
+                    )}
+                   
+                  </Table.Cell>
+                  <Table.Cell>
                     <span
                       onClick={() => {
                         setShowModal(true);
@@ -387,38 +429,7 @@ export default function DashUsers() {
                       Remove
                     </span>
                   </Table.Cell>
-                 {currentUser.isOwner&& <Table.Cell>
-                  <span
-                    onClick={() => {
-                      if (!user.isAdmin) {
-                        setShowAccessConfirmation(true);
-                        setUserIdToAssignAdmin(user._id);
-                      }
-                    }}
-                    className={`font-medium text-green-500 hover:underline cursor-pointer mr-5 ${
-                      user.isAdmin ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
-                    disabled={user.isAdmin}
-                  >
-                    Assign
-                  </span>
-                  
-                  <span
-                    onClick={() => {
-                      if(user.isAdmin){
-                        setShowAccessDeclaration(true);
-                        setUserIdToResignAdmin(user._id);
-                      }
-                      
-                    }}
-                    className={`font-medium text-red-500 hover:underline cursor-pointer mr-5 ${
-                      !user.isAdmin ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
-                    disabled={!user.isAdmin}
-                  >
-                    Resign
-                  </span>
-                </Table.Cell>}
+                 
                 </Table.Row>
               </Table.Body>
             ))}
