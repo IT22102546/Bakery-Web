@@ -12,6 +12,7 @@ export default function Booking() {
   const [error, setError] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const [cakes, setCakes] = useState([]);
 
   const [formData, setFormData] = useState({
     cakeType: "",
@@ -54,13 +55,33 @@ export default function Booking() {
     fetchShops();
   }, [currentUser, navigate]);
 
-  const handleShopSelection = (shop) => {
+  const handleShopSelection = async (shop) => {
     setSelectedShop(shop);
+  
+    try {
+      const res = await fetch(`/api/cakes/getCakesByShop/${shop._id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error(`Error fetching cakes: ${res.status}`);
+      }
+  
+      const data = await res.json();
+      setCakes(data.cakes || []);
+    } catch (error) {
+      console.error(error.message);
+      alert('Failed to load cakes for the selected shop');
+    }
   };
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -70,17 +91,19 @@ export default function Booking() {
     }));
   };
 
+  
+
   const handleBooking = async () => {
     if (!selectedShop) {
-      alert("Please select a bakery shop!");
+      alert('Please select a bakery shop!');
       return;
     }
-
+  
     if (!formData.cakeType || !formData.contactName || !formData.contactNumber) {
-      alert("Please fill in all required fields!");
+      alert('Please fill in all required fields!');
       return;
     }
-
+  
     setLoading(true);
     try {
       const bookingData = {
@@ -88,32 +111,44 @@ export default function Booking() {
         date: selectedDate.toISOString(),
         ...formData,
       };
-
-      const response = await fetch("/api/bookings", {
-        method: "POST",
+  
+      const response = await fetch('/api/bookings/create', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(bookingData),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || `Error: ${response.status}`);
       }
-
+  
       alert(
-        `Booking confirmed at ${selectedShop.username} on ${selectedDate.toDateString()}`
+        `Booking request submitted to ${selectedShop.username} on ${selectedDate.toDateString()}. Check your Booking to see your status.`
       );
+  
+      // Reset form fields and state
+      setFormData({
+        cakeType: "",
+        quantity: 1,
+        message: "",
+        contactName: "",
+        contactNumber: "",
+      });
+      setSelectedShop(null);
+      setCakes([]);
     } catch (error) {
-      console.error("Error creating booking:", error);
-      alert("Failed to confirm booking. Please try again later.");
+      console.error('Error creating booking:', error);
+      alert('Failed to confirm booking. Please try again later.');
     } finally {
       setLoading(false);
     }
   };
-
+  
+  
   if (!currentUser) {
     return null;
   }
@@ -166,7 +201,7 @@ export default function Booking() {
                       {shop.username}
                     </h3>
                     <p className="text-gray-500 text-xs text-center">
-                      {shop.address || "Address not provided"}
+                      {shop.adress || "Address not provided"}
                     </p>
                   </div>
                 ))}
@@ -194,11 +229,8 @@ export default function Booking() {
             <strong>Selected Date:</strong> {selectedDate.toDateString()}
           </p>
           <form className="space-y-4">
-            <div>
-              <label
-                htmlFor="cakeType"
-                className="block text-sm font-medium text-gray-700"
-              >
+          <div>
+              <label htmlFor="cakeType" className="block text-sm font-medium text-gray-700">
                 Cake Type
               </label>
               <select
@@ -210,12 +242,13 @@ export default function Booking() {
                 className="mt-1 block w-full p-2 border rounded-md"
               >
                 <option value="" disabled>
-                  Select a cake type
+                  {cakes.length > 0 ? "Select a cake type" : "No cakes available"}
                 </option>
-                <option value="Chocolate">Chocolate</option>
-                <option value="Vanilla">Vanilla</option>
-                <option value="Strawberry">Strawberry</option>
-                <option value="Custom">Custom</option>
+                {cakes.map((cake) => (
+                  <option key={cake._id} value={cake.title}>
+                    {cake.title}
+                  </option>
+                ))}
               </select>
             </div>
             <div>

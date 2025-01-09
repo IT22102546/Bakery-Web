@@ -1,11 +1,11 @@
 import { Sidebar } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { HiArchive, HiArrowSmRight, HiCake, HiGift, HiOutlineMail, HiOutlineMailOpen, HiOutlineUserGroup, HiUser} from 'react-icons/hi';
+import { HiArchive, HiArrowSmRight, HiBookmark, HiBookOpen, HiCake, HiGift, HiOutlineMail, HiOutlineMailOpen, HiOutlineUserGroup, HiUser} from 'react-icons/hi';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { signOut } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
-import { FaGift } from "react-icons/fa";
+import { FaDelicious, FaGift } from "react-icons/fa";
 
 export default function DashSideBar() {
   const dispatch = useDispatch();
@@ -55,7 +55,26 @@ export default function DashSideBar() {
               Profile
             </Sidebar.Item>
           </Link>
+          <Link to='/dashboard?tab=mybookings' key="mybookings">
+                <Sidebar.Item
+                  active={tab === 'mybookings'}
+                  icon={HiBookmark}
+                  as='div'
+                >
+                  My Bookings
+                </Sidebar.Item>
+            </Link>
 
+            <Link to='/dashboard?tab=mydesignreq' key="mydesignreq">
+                <Sidebar.Item
+                  active={tab === 'mydesignreq'}
+                  icon={HiBookmark}
+                  as='div'
+                >
+                  My Design Req
+                </Sidebar.Item>
+            </Link>
+            
           {currentUser?.isAdmin && currentUser?.isOwner && (
             <>
               <Link to='/dashboard?tab=users' key="users">
@@ -106,6 +125,26 @@ export default function DashSideBar() {
                   as='div'
                 >
                   Cakes
+                </Sidebar.Item>
+              </Link>
+
+              <Link to='/dashboard?tab=designs' key="designs">
+                <Sidebar.Item
+                  active={tab === 'designs'}
+                  icon={FaDelicious}
+                  as='div'
+                >
+                  Requested Designs
+                </Sidebar.Item>
+              </Link>
+
+              <Link to='/dashboard?tab=bookings' key="bookings">
+                <Sidebar.Item
+                  active={tab === 'bookings'}
+                  icon={HiBookOpen}
+                  as='div'
+                >
+                  Bookings
                 </Sidebar.Item>
               </Link>
 

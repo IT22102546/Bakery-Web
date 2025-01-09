@@ -12,6 +12,7 @@ import designRoute from "./routes/design.route.js";
 import sweetRoute from "./routes/sweet.route.js";
 import rideRequestRoutes from "./routes/rideRequest.routes.js";
 import shopRequestRoutes from "./routes/shopRequest.routes.js";
+import bookingRoutes from "./routes/booking.route.js";
 
 
 
@@ -50,6 +51,7 @@ app.use("/api/designs",designRoute);
 app.use("/api/sweets",sweetRoute); 
 app.use("/api/ridereq", rideRequestRoutes);
 app.use("/api/shopreq", shopRequestRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 
 app.use((err,req,res,next)=>{

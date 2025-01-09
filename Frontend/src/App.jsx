@@ -23,9 +23,9 @@ import Sweets from './Pages/Sweets'
 import AddSweets from './Pages/AddSweets'
 import PostSweet from './Pages/PostSweet'
 import UpdateSweet from './Pages/UpdateSweets'
-import Career from './Pages/Career'
 import DeliverySignUp from './Pages/DeliverySignUp'
 import ShopSignUp from './Pages/ShopSignUp'
+import Career from './Pages/Career'
 
 
 

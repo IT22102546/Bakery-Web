@@ -27,9 +27,9 @@ const designSchema = new mongoose.Schema(
       required: true,
     },
     addons: [String],
-    isRequest: {
+    isReject: {
       type: Boolean,
-      default: true, 
+      default: false, 
     },
     isAccept: {
       type: Boolean,

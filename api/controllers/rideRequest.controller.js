@@ -80,7 +80,7 @@ export const confirmRiderRequest = async (req, res) => {
             username: riderRequest.username,
             email: riderRequest.email,
             password: hashedPassword, 
-            address: riderRequest.address,
+            adress: riderRequest.address,
             mobile: riderRequest.mobile,
             IdNumber: riderRequest.idNumber,
             age: riderRequest.age,

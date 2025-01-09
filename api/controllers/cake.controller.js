@@ -252,3 +252,14 @@ export const admingetCakes = async (req, res, next) => {
 };
 
 
+export const getCakesByShop = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const cakes = await Cake.find({ userId });
+    res.status(200).json({ success: true, cakes });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ success: false, message: 'Failed to fetch cakes' });
+  }
+};
+

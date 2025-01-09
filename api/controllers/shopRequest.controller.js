@@ -72,7 +72,7 @@ export const confirmShopRequest = async (req, res) => {
             username: shopRequest.username,
             email: shopRequest.email,
             password: hashedPassword, 
-            address: shopRequest.address,
+            adress: shopRequest.address,
             mobile: shopRequest.mobile,
             isAdmin: true,
         });
