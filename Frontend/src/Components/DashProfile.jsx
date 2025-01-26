@@ -285,6 +285,19 @@ export default function DashProfile() {
             </Button>
           </Link>
         )} 
+
+{currentUser.isOwner && (
+          <Link to='/addblogs'>
+            <Button
+              type='button'
+               gradientDuoTone='purpleToBlue'
+              className='w-full , text-black bg-slate-400 '
+              outline
+            >
+              Add Blogs.
+            </Button>
+          </Link>
+        )} 
        
        
 

@@ -72,6 +72,9 @@ export default function Header() {
             <NavLink to="/aboutus" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
               About Us
             </NavLink>
+            <NavLink to="/blogs" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+              Blogs
+            </NavLink>
 
           </div>
 
@@ -135,6 +138,9 @@ export default function Header() {
           </NavLink>
           <NavLink to="/aboutus" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
             About Us
+          </NavLink>
+          <NavLink to="/blogs" className={({ isActive }) => isActive ? "text-black" : "text-white"}>
+            Blogs
           </NavLink>
         </div>
       </Navbar.Collapse>

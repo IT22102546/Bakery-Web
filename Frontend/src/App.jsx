@@ -26,6 +26,10 @@ import UpdateSweet from './Pages/UpdateSweets'
 import DeliverySignUp from './Pages/DeliverySignUp'
 import ShopSignUp from './Pages/ShopSignUp'
 import Career from './Pages/Career'
+import AddBlogs from './Pages/AddBlogs'
+import BlogDetails from './Pages/BlogDetails'
+import UpdateBlog from './Pages/UpdateBlog'
+import Blogs from './Pages/Blogs'
 
 
 
@@ -46,6 +50,8 @@ export default function App() {
         <Route path="/careers" element={<Career/>}/>
         <Route path="/signupdelivery" element={<DeliverySignUp/>}/>
         <Route path="/signupshops" element={<ShopSignUp/>}/>
+        <Route path="/blogs/:slug" element={<BlogDetails />} />
+        <Route path="/blogs" element={<Blogs/>} />
         
 
 
@@ -64,6 +70,8 @@ export default function App() {
           <Route path="/update-cake/:productId" element={<UpdateCake/>}/>
           <Route path="/update-sweet/:productId" element={<UpdateSweet/>}/>
           <Route path="/addsweets" element={<AddSweets/>}/>
+          <Route path="/addblogs" element={<AddBlogs/>}/>
+          <Route path="/update-blog/:id" element={<UpdateBlog/>} />
       </Route>
 
      

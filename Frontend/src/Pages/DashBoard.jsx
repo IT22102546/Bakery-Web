@@ -12,6 +12,7 @@ import DashBookings from "../Components/DashBookings";
 import DashMyBookings from "../Components/DashMyBookings";
 import DashDesign from "../Components/DashDesign";
 import MyDesignReq from "../Components/MyDesignReq";
+import DashBlogs from "../Components/DashBlogs";
 
 
 export default function DashBoard() {
@@ -42,6 +43,7 @@ export default function DashBoard() {
       {tab == 'mybookings' && <DashMyBookings/>}
       {tab == 'designs' && <DashDesign/>}
       {tab == 'mydesignreq' && <MyDesignReq/>}
+      {tab == 'blogs' && <DashBlogs/>}
 
       {/*
 
