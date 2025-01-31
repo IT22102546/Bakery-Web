@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FiTrash2 } from 'react-icons/fi';
 import { FaPlus, FaBirthdayCake } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
@@ -8,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function DesignForm() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { shopId, shopName } = location.state;
   const { currentUser } = useSelector((state) => state.user);
   const [addons, setAddons] = useState([]);
@@ -38,37 +40,32 @@ export default function DesignForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-  
-    // Debugging: Log form data before sending it
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-  
+
     formData.append('shopId', shopId);
     formData.append('shopName', shopName);
-    formData.append('addons', JSON.stringify(addons)); 
+    formData.append('addons', JSON.stringify(addons));
     formData.append('userId', userId);
-  
+
     setLoading(true);  // Start loading
-  
+
     try {
-      const response = await fetch('/api/designs/save', {
-        method: 'POST',
-        body: formData,
-      });
-  
-      if (response.ok) {
-        toast.success('Your design request has been submitted successfully! The shop will contact you soon. Check your request status in your profile.');
-      } else {
-        throw new Error('Failed to save design');
-      }
+        const response = await fetch('/api/designs/save', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            navigate('/designCakeSuccess'); // Redirect to the success page
+        } else {
+            throw new Error('Failed to save design');
+        }
     } catch (error) {
-      console.error(error.message);
-      toast.error('Failed to submit your design request. Please try again.');
+        console.error(error.message);
+        toast.error('Failed to submit your design request. Please try again.');
     } finally {
-      setLoading(false);  // Stop loading after submission
+        setLoading(false);  // Stop loading after submission
     }
-  };
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-pink-300 via-red-200 to-pink-500 flex items-center justify-center pt-4 pb-4">

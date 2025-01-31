@@ -30,6 +30,8 @@ import AddBlogs from './Pages/AddBlogs'
 import BlogDetails from './Pages/BlogDetails'
 import UpdateBlog from './Pages/UpdateBlog'
 import Blogs from './Pages/Blogs'
+import DesignCakeSuccess from './Pages/DesignCakeSuccess'
+import BookingCakeSuccess from './Pages/BookingCakeSuccess'
 
 
 
@@ -61,6 +63,9 @@ export default function App() {
         <Route path="/order-summary" element={<OrderSummary/>}/>
         <Route path="/order-pay-success" element={<CheckoutSuccess/>}/>
         <Route path="/designform" element={<DesignForm/>}/>
+        <Route path="/designcakesuccess" element={<DesignCakeSuccess/>}/>
+        <Route path="/bookingcakesuccess" element={<BookingCakeSuccess/>}/>
+
       <Route/>
 
       <Route element={<OnlyAdminPrivateRoute/>}>

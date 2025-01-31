@@ -95,12 +95,12 @@ export default function Booking() {
 
   const handleBooking = async () => {
     if (!selectedShop) {
-      alert('Please select a bakery shop!');
+      alert("Please select a bakery shop!");
       return;
     }
   
     if (!formData.cakeType || !formData.contactName || !formData.contactNumber) {
-      alert('Please fill in all required fields!');
+      alert("Please fill in all required fields!");
       return;
     }
   
@@ -112,11 +112,11 @@ export default function Booking() {
         ...formData,
       };
   
-      const response = await fetch('/api/bookings/create', {
-        method: 'POST',
+      const response = await fetch("/api/bookings/create", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(bookingData),
       });
@@ -126,9 +126,13 @@ export default function Booking() {
         throw new Error(errorData.message || `Error: ${response.status}`);
       }
   
-      alert(
-        `Booking request submitted to ${selectedShop.username} on ${selectedDate.toDateString()}. Check your Booking to see your status.`
-      );
+      // Navigate to the Booking Success page with shop name and booking date
+      navigate("/bookingcakesuccess", {
+        state: { 
+          shopName: selectedShop.username, 
+          bookingDate: selectedDate.toDateString() 
+        },
+      });
   
       // Reset form fields and state
       setFormData({
@@ -141,8 +145,8 @@ export default function Booking() {
       setSelectedShop(null);
       setCakes([]);
     } catch (error) {
-      console.error('Error creating booking:', error);
-      alert('Failed to confirm booking. Please try again later.');
+      console.error("Error creating booking:", error);
+      alert("Failed to confirm booking. Please try again later.");
     } finally {
       setLoading(false);
     }

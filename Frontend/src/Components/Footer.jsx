@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-pink-500 via-pink-600 to-pink-700 text-white py-10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm justify-items-center">
           {/* Useful Links */}
           <div className="mb-8 md:mb-0">
             <h2 className="text-lg font-semibold text-blue-200 mb-4">Useful Links</h2>
@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
 
           {/* About Us */}
-          <div className="text-center md:text-left mb-8 md:mb-0">
+          <div className="text-center mb-8 md:mb-0">
             <h2 className="text-lg font-semibold text-blue-200 mb-4">About Us</h2>
             <p className="leading-6 text-sm">
               We are a team of passionate people whose goal is to improve everyone's life through disruptive products. We build great products to solve your business problems.
@@ -34,14 +34,14 @@ export default function Footer() {
           </div>
 
           {/* Connect with Us */}
-          <div className="text-center md:text-left">
+          <div className="text-center">
             <h2 className="text-lg font-semibold text-blue-200 mb-4">Connect with Us</h2>
             <ul className="space-y-2">
               <li><a href="mailto:contact@yourcompany.com" className="hover:underline">Contact Us</a></li>
               <li><a href="https://www.yourcompany.com" className="hover:underline">www.ab.com</a></li>
               <li>+94 76 465 4746</li>
             </ul>
-            <div className="flex justify-center md:justify-start space-x-4 mt-6">
+            <div className="flex justify-center space-x-4 mt-6">
               <a href="#" className="w-8 h-8 flex items-center justify-center bg-white text-pink-600 rounded-full hover:bg-pink-200">
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>

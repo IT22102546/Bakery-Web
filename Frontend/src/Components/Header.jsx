@@ -31,9 +31,9 @@ export default function Header() {
   };
 
   return (
-    <Navbar className="border-b-2 relative z-50 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600" >
+    <Navbar className="border-b-2 relative z-50 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-lg">
+      <div className="container mx-auto flex items-center justify-between "> 
 
-      <div className="container mx-auto flex items-center justify-between py-4">
 
         {/* Logo */}
         <div className="flex items-center">
