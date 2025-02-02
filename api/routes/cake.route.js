@@ -1,5 +1,5 @@
 import express from 'express';
-import { create, deletecake, featureCake, getFeaturedCakes, getCakes, getCakesByCategory, unfeatureCake, updateCake, admingetCakes, unavailable, available, getCakesByShop} from '../controllers/cake.controller.js';
+import { create, deletecake, featureCake, getFeaturedCakes, getCakes, getCakesByCategory, unfeatureCake, updateCake, admingetCakes, unavailable, available, getCakesByShop, mobilegetCakes} from '../controllers/cake.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
@@ -16,5 +16,6 @@ router.put('/unavailable/:productId/:userId', verifyToken, unavailable);
 router.get('/featured', getFeaturedCakes);
 router.get('/category', getCakesByCategory);
 router.get('/getCakesByShop/:userId', getCakesByShop);
+router.get("/mobilegetcakes", mobilegetCakes);
 
 export default router;

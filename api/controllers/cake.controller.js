@@ -263,3 +263,53 @@ export const getCakesByShop = async (req, res) => {
   }
 };
 
+
+export const mobilegetCakes = async (req, res, next) => {
+  try {
+    const {
+      slug,
+      searchTerm,
+      page = 1,
+      limit = 9,
+      category,
+      priceRange,
+    } = req.query;
+    const queryOptions = {};
+    //console.log("Search Term:", searchTerm);
+
+    if (slug) {
+      queryOptions.slug = slug;
+    }
+
+    if (searchTerm) {
+      queryOptions.title = { $regex: searchTerm, $options: "i" };
+    }
+
+    if (category) {
+      queryOptions.category = category;
+    }
+
+    if (priceRange) {
+      const [minPrice, maxPrice] = priceRange.split("-").map(Number);
+      queryOptions.price = { $gte: minPrice, $lte: maxPrice };
+    }
+
+    const totalProducts = await Cake.countDocuments(queryOptions);
+    const products = await Cake.find(queryOptions)
+      .sort({ createdAt: -1 }) // Sort by createdAt field in descending order
+      .populate("userId", "username")
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
+
+    res.status(200).json({
+      products,
+      totalProducts,
+      totalPages: Math.ceil(totalProducts / limit),
+      currentPage: Number(page),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+

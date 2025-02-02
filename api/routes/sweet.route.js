@@ -1,6 +1,6 @@
 import express from 'express';
 import { verifyToken } from '../utils/verifyUser.js';
-import { admingetSweets, available, create, deletesweet, featureSweet, getFeaturedSweets, getSweets, getSweetsByCategory, unavailable, unfeatureSweet, updateSweet } from '../controllers/sweet.controller.js';
+import { admingetSweets, available, create, deletesweet, featureSweet, getFeaturedSweets, getSweets, getSweetsByCategory, mobilegetSweets, mobilegetSweetsByCategory, unavailable, unfeatureSweet, updateSweet } from '../controllers/sweet.controller.js';
 
 const router = express.Router();
 
@@ -15,5 +15,7 @@ router.put('/available/:productId/:userId', verifyToken, available);
 router.put('/unavailable/:productId/:userId', verifyToken, unavailable);
 router.get('/featured', getFeaturedSweets);
 router.get('/category', getSweetsByCategory);
+router.get('/mobilegetsweets',mobilegetSweets);
+router.get('/mobilecategory', mobilegetSweetsByCategory);
 
 export default router;

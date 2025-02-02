@@ -14,6 +14,7 @@ import rideRequestRoutes from "./routes/rideRequest.routes.js";
 import shopRequestRoutes from "./routes/shopRequest.routes.js";
 import bookingRoutes from "./routes/booking.route.js";
 import blogRoutes from "./routes/blog.route.js";
+import searchRoutes from "./routes/search.route.js";
 
 
 
@@ -54,6 +55,7 @@ app.use("/api/ridereq", rideRequestRoutes);
 app.use("/api/shopreq", shopRequestRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/blogs", blogRoutes);
+app.use("/api/search", searchRoutes);
 
 
 app.use((err,req,res,next)=>{
