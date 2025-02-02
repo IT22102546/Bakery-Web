@@ -32,6 +32,7 @@ import UpdateBlog from './Pages/UpdateBlog'
 import Blogs from './Pages/Blogs'
 import DesignCakeSuccess from './Pages/DesignCakeSuccess'
 import BookingCakeSuccess from './Pages/BookingCakeSuccess'
+import CODForm from './Pages/CODForm'
 
 
 
@@ -65,6 +66,8 @@ export default function App() {
         <Route path="/designform" element={<DesignForm/>}/>
         <Route path="/designcakesuccess" element={<DesignCakeSuccess/>}/>
         <Route path="/bookingcakesuccess" element={<BookingCakeSuccess/>}/>
+        <Route path="/cod-form" element={<CODForm/>} />
+
 
       <Route/>
 

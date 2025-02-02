@@ -56,6 +56,17 @@ const orderSchema = new mongoose.Schema({
        type: Number,
        required:true,
     },
+
+    CashOnDelivery:{
+        type: Boolean,
+        default:false
+        
+     },
+     OnlinePayment:{
+        type: Boolean,
+        default:false
+        
+     },
     }, {timestamps: true}
 
 );

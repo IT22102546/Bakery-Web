@@ -7,44 +7,65 @@ import { errorHandler } from "../utils/error.js";
 
 
 //create new order
-export const createOrder = async (req, res,next)=>{
-    if (!req.body.userId || !req.body.productsId || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.phone || !req.body.address ||!req.body.state || !req.body.zip  || !req.body.subtotal || !req.body.deliveryfee || !req.body.totalcost ) {
-        return next(errorHandler(400, 'Please provide all required fields'));
-      }
+export const createOrder = async (req, res, next) => {
+  // Log the full body to see what is being received
+  console.log("Request Body:", req.body);
 
-      const userId = req.body.userId;
-      const productsId = req.body.productsId;
-      const first_name = req.body.first_name;
-      const last_name = req.body.last_name;
-      const email = req.body.email;
-      const phone = req.body.phone;
-      const address = req.body.address;
-      const state = req.body.state;
-      const zip = req.body.zip;
-      const subtotal = req.body.subtotal;
-      const deliveryfee = req.body.deliveryfee;
-      const totalcost = req.body.totalcost;
+  // Check if all the required fields are present
+  if (!req.body.userId || !req.body.productsId || !req.body.first_name || !req.body.last_name || !req.body.email || !req.body.phone || !req.body.address || !req.body.city || !req.body.zip || !req.body.subtotal || !req.body.deliveryfee || !req.body.totalcost) {
+    console.log("Missing required fields");
+    return next(errorHandler(400, 'Please provide all required fields'));
+  }
 
-      function idGen(phone) {
-        const randomString = Math.random().toString(36).substring(2, 10); 
-        const id = "ORD" + randomString + phone; 
-        return id;
-      }
+  // Log each field to see the values being passed
+  console.log("userId:", req.body.userId);
+  console.log("productsId:", req.body.productsId);
+  console.log("first_name:", req.body.first_name);
+  console.log("last_name:", req.body.last_name);
+  console.log("email:", req.body.email);
+  console.log("phone:", req.body.phone);
+  console.log("address:", req.body.address);
+  console.log("state:", req.body.city);
+  console.log("zip:", req.body.zip);
+  console.log("subtotal:", req.body.subtotal);
+  console.log("deliveryfee:", req.body.deliveryfee);
+  console.log("totalcost:", req.body.totalcost);
 
-      const orderId = idGen(phone);
+  const userId = req.body.userId;
+  const productsId = req.body.productsId;
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const address = req.body.address;
+  const city = req.body.city;
+  const zip = req.body.zip;
+  const subtotal = req.body.subtotal;
+  const deliveryfee = req.body.deliveryfee;
+  const totalcost = req.body.totalcost;
 
-      const newOrder = new Order({
-        orderId,userId,productsId,first_name,last_name,email,phone,
-        address,state,zip,subtotal,deliveryfee,totalcost
-      })
+  function idGen(phone) {
+    const randomString = Math.random().toString(36).substring(2, 10); 
+    const id = "ORD" + randomString + phone; 
+    return id;
+  }
 
-      try {
-        const savedOrder = await newOrder.save();
-        res.status(201).json(savedOrder);
-      } catch (error) {
-        next(error);
-      }
-}
+  const orderId = idGen(phone);
+
+  const newOrder = new Order({
+    orderId, userId, productsId, first_name, last_name, email, phone,
+    address, city, zip, subtotal, deliveryfee, totalcost, CashOnDelivery: true 
+  });
+
+  try {
+    const savedOrder = await newOrder.save();
+    res.status(201).json(savedOrder);
+  } catch (error) {
+    console.error("Error saving order:", error); // Log the error if saving fails
+    next(error);
+  }
+};
+
 
 
 
