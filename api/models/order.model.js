@@ -11,14 +11,12 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required : true,
     },
-    shopName: {
-        type:String,
-        required : true,
-    },
+    
     productsId: [{
         title: { type: String, required: true },
         quantity: { type: Number, required: true },
         mainImage: { type: String}, 
+        storename:{type:String, required:true}
     }],
     first_name:{
         type:String,

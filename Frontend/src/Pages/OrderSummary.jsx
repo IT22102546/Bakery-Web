@@ -44,6 +44,9 @@ export default function OrderSummary() {
                   alt={cartItem.title}
                 />
                 <div className="flex w-full flex-col px-4 py-4">
+                <p className="text-lg font-bold">
+                     {cartItem.storename}
+                  </p>
                   <span className="font-semibold">
                     {cartItem.title} ({cartItem.cartTotalQuantity})
                   </span>

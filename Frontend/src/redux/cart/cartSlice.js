@@ -11,7 +11,9 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const { product, userId } = action.payload;
+      const { product, userId,storename } = action.payload;
+
+      console.log("Store Name:",storename)
       const existingIndex = state.cartItems.findIndex(
         (item) => item._id === product._id && item.userId === userId
       );
@@ -19,7 +21,7 @@ const cartSlice = createSlice({
       if (existingIndex >= 0) {
         state.cartItems[existingIndex].cartTotalQuantity += 1;
       } else {
-        const tempProduct = { ...product, cartTotalQuantity: 1, userId };
+        const tempProduct = { ...product, cartTotalQuantity: 1, userId ,storename};
         state.cartItems.push(tempProduct);
       }
     },

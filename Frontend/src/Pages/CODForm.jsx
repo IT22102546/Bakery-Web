@@ -31,6 +31,7 @@ export default function DeliveryDetails() {
         title: item.title,
         quantity: item.cartTotalQuantity,
         mainImage: item.mainImage,
+        storename:item.storename
       })),
       ...formData,
       subtotal,

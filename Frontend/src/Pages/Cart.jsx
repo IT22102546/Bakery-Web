@@ -115,7 +115,7 @@ export default function Cart() {
                           <div className="flex items-center gap-4">
                             <img src={cartItem.mainImage} className="w-20 h-20 rounded object-cover" />
                             <div>
-                            <p className="font-bold text-sm mt-2 font-cinzel">Rs.{cartItem.UserId}</p>
+                            <p className="font-bold text-sm mt-2 font-cinzel">{cartItem.storename}</p> 
                               <h3 className="font-semibold text-base leading-6 font-cinzel">{cartItem.title}</h3>
                               <p className="font-bold text-sm mt-2 font-cinzel">Rs. {cartItem.price}</p>
 

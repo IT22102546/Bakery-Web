@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Alert, Button, TextInput } from 'flowbite-react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import 'aos/dist/aos.css'; // Import AOS styles
 export default function PostSweet() {
   const { sweetSlug } = useParams();
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate();   
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -63,10 +64,10 @@ export default function PostSweet() {
 
   const handleAddToCart = () => {
     if (user) {
-      dispatch(addToCart({ product, userId: user.id }));
+      dispatch(addToCart({ product, userId: user.id , storename:product.userId.username}));
       showNotification('Product added to the cart');
     } else {
-      console.log('User not logged in');
+      navigate('/sign-in'); // Redirect to the sign-in page if not logged in
     }
   };
 

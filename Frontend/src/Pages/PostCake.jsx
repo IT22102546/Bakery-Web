@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cart/cartSlice';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 export default function PostCake() {
   const { cakeSlug } = useParams();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
+  const navigate = useNavigate(); // 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [mainImageIndex, setMainImageIndex] = useState(0);
@@ -63,10 +65,10 @@ export default function PostCake() {
 
   const handleAddToCart = () => {
     if (user) {
-      dispatch(addToCart({ product, userId: user.id }));
+      dispatch(addToCart({ product, userId: user.id , storename:product.userId.username}));
       showNotification('Product added to the cart');
     } else {
-      console.log('User not logged in');
+      navigate('/sign-in'); // Redirect to the sign-in page if not logged in
     }
   };
 

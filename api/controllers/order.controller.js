@@ -44,6 +44,7 @@ export const createOrder = async (req, res, next) => {
   const deliveryfee = req.body.deliveryfee;
   const totalcost = req.body.totalcost;
 
+
   function idGen(phone) {
     const randomString = Math.random().toString(36).substring(2, 10); 
     const id = "ORD" + randomString + phone; 

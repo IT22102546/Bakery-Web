@@ -138,7 +138,8 @@ const createOrder = async (customer, data) => {
         id: item._id,
         title: item.title,
         mainImage: item.mainImage, 
-        quantity: item.cartTotalQuantity
+        quantity: item.cartTotalQuantity,
+        storename:item.storename
       })),
       first_name: data.customer_details.name.split(' ')[0],
       last_name: data.customer_details.name.split(' ')[1],

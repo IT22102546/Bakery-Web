@@ -264,8 +264,8 @@ export default function DashOrders() {
                         {Orders.filter((orders) => {
                             const searchQuery = searchName.toLowerCase();
                             const firstName = orders.first_name?.toLowerCase().includes(searchQuery) || false;
-const lastName = orders.last_name?.toLowerCase().includes(searchQuery) || false;
-const orderId = orders._id?.toLowerCase().includes(searchQuery) || false;
+                            const lastName = orders.last_name?.toLowerCase().includes(searchQuery) || false;
+                            const orderId = orders._id?.toLowerCase().includes(searchQuery) || false;
 
                             return firstName || lastName || orderId;
                         }).map((orders) => (
@@ -275,7 +275,8 @@ const orderId = orders._id?.toLowerCase().includes(searchQuery) || false;
                                         {orders.productsId.map((product) => (
                                             <div key={product.title} className="w-40">
                                                 <img src={product.mainImage} alt={product.title} className="w-10 h-10 object-cover" />
-                                                <p className="font-semibold">Name : {product.title}</p>
+                                                <p className="font-semibold">Shop Name : {product.storename}</p>
+                                                <p className="font-semibold">Product Name : {product.title}</p>
                                                 <p className="font-semibold">Quantity: x{product.quantity}</p>
                                                 <br />
                                             </div>
