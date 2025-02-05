@@ -250,6 +250,7 @@ export default function DashOrders() {
                     <Table hoverable className='shadow-md'>
                         <Table.Head>
                             <Table.HeadCell>Order Items</Table.HeadCell>
+                            <Table.HeadCell>Payment Method</Table.HeadCell>
                             <Table.HeadCell>First Name</Table.HeadCell>
                             <Table.HeadCell>Last Name</Table.HeadCell>
                             <Table.HeadCell>Email</Table.HeadCell>
@@ -262,9 +263,10 @@ export default function DashOrders() {
                         </Table.Head>
                         {Orders.filter((orders) => {
                             const searchQuery = searchName.toLowerCase();
-                            const firstName = orders.first_name.toLowerCase().includes(searchQuery);
-                            const lastName = orders.last_name.toLowerCase().includes(searchQuery);
-                            const orderId = orders._id.toLowerCase().includes(searchQuery);
+                            const firstName = orders.first_name?.toLowerCase().includes(searchQuery) || false;
+const lastName = orders.last_name?.toLowerCase().includes(searchQuery) || false;
+const orderId = orders._id?.toLowerCase().includes(searchQuery) || false;
+
                             return firstName || lastName || orderId;
                         }).map((orders) => (
                             <Table.Body className='divide-y' key={orders._id}>
@@ -278,6 +280,9 @@ export default function DashOrders() {
                                                 <br />
                                             </div>
                                         ))}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {orders.OnlinePayment ? "Online Payment" : orders.CashOnDelivery ? "Cash on Delivery" : "Unknown"}
                                     </Table.Cell>
                                     <Table.Cell>{orders.first_name}</Table.Cell>
                                     <Table.Cell>{orders.last_name}</Table.Cell>

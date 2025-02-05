@@ -147,6 +147,7 @@ const createOrder = async (customer, data) => {
       address: data.customer_details.address.line1,
       city: data.customer_details.address.city,
       zip: data.customer_details.address.postal_code,
+      OnlinePayment: true, 
       subtotal: data.amount_subtotal / 100,
       deliveryfee: 300,
       totalcost: data.amount_total / 100,
