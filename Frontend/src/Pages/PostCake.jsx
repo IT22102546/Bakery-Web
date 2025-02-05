@@ -116,7 +116,7 @@ export default function PostCake() {
             <div className="gap-4 sm:flex-row justify-between mt-4">
               Price: Rs. {product.price}
             </div>
-            <Button className="bg-slate-400" onClick={() => handleQuantityChange(-1)}>
+            <Button className="bg-pink-400" onClick={() => handleQuantityChange(-1)}>
               <FaMinus />
             </Button>
             <TextInput
@@ -126,7 +126,7 @@ export default function PostCake() {
               onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value)))}
               className="w-16 text-center"
             />
-            <Button className="bg-slate-400" onClick={() => handleQuantityChange(1)}>
+            <Button className="bg-pink-400" onClick={() => handleQuantityChange(1)}>
               <FaPlus />
             </Button>
           </div>
@@ -134,7 +134,7 @@ export default function PostCake() {
 
           <div className="flex justify-center gap-4 mt-4" data-aos="fade-up">
             <button
-              className="block w-full text-center py-2 mt-2 bg-slate-200 border border-slate-200 text-black hover:bg-slate-400 rounded hover:border-slate-300 hover:text-white hover:font-semibold"
+              className="block w-full text-center py-2 mt-2 bg-pink-400 border border-pink-200 text-black hover:bg-pink-600 rounded hover:border-pink-300 hover:text-white hover:font-semibold"
               onClick={handleAddToCart}
             >
               Add to Cart

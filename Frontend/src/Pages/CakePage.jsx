@@ -3,25 +3,27 @@ import { Link, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cart/cartSlice';
-import AOS from 'aos'; // Import AOS
-import 'aos/dist/aos.css'; // Import AOS styles
-import { FaSearch, FaShoppingCart, FaTag, FaStore } from 'react-icons/fa'; // Import icons
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { FaSearch, FaShoppingCart, FaTag, FaStore } from 'react-icons/fa';
 
-export default function CakePage() {
+export default function CakePage({ searchTermFromHeader }) {
   const location = useLocation();
   const { category } = queryString.parse(location.search);
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(category || '');
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
   const [notification, setNotification] = useState({ visible: false, message: '' });
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser);
+  
+  const { search: searchQuery } = queryString.parse(location.search);
+  const [searchTerm, setSearchTerm] = useState(searchQuery || '');
 
-  const categories = ['Birthday', 'Wedding', 'Anniversary', 'Custom']; 
+  const categories = ['Birthday', 'Wedding', 'Anniversary', 'Custom'];
   const priceRanges = [
     { label: 'Under Rs. 1000', value: '0-1000' },
     { label: 'Rs. 1000 - Rs. 3000', value: '1000-3000' },
@@ -31,30 +33,26 @@ export default function CakePage() {
   useEffect(() => {
     fetchProducts();
     AOS.init();
-  }, [currentPage, searchTerm, selectedCategory, selectedPriceRange]);
-
+  }, [searchTerm, selectedCategory, selectedPriceRange,currentPage]);
+  
+  
   const fetchProducts = async () => {
     try {
       const res = await fetch(
-        `/api/cakes/getcakes?searchTerm=${searchTerm}&page=${currentPage}&category=${selectedCategory}&priceRange=${selectedPriceRange}`
+        `/api/cakes/getcakes?searchTerm=${searchTerm}&category=${selectedCategory}&priceRange=${selectedPriceRange}`
       );
       const data = await res.json();
       if (res.ok) {
         setProducts(data.products);
-        setTotalProducts(data.totalProducts);
-        setTotalPages(data.totalPages);
       }
     } catch (error) {
       console.error(error.message);
     }
   };
 
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
   };
 
   const handleCategoryChange = (e) => {
@@ -64,12 +62,12 @@ export default function CakePage() {
 
   const handlePriceRangeChange = (e) => {
     setSelectedPriceRange(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handleAddToCart = (product) => {
     if (user) {
-      dispatch(addToCart({ product, userId: user.id }));
+      dispatch(addToCart({ product, userId: user.id, storename:product.userId.username }));
       showNotification('Product added to the cart');
     } else {
       console.log('User not logged in');
@@ -90,17 +88,17 @@ export default function CakePage() {
         <h3 className="text-xl font-semibold mb-4 text-center">Filters</h3>
         
         <div className="mb-4">
-          <div className="flex items-center border px-4 py-2 rounded w-full">
-            <FaSearch className="mr-2" />
-            <input
-              type="text"
-              placeholder="Search cakes..."
-              className="w-full outline-none"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </div>
-        </div>
+  <div className="flex items-center border px-4 py-2 rounded w-full">
+    <FaSearch className="mr-2" />
+    <input
+      type="text"
+      placeholder="Search cakes..."
+      className="w-full outline-none"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+    />
+  </div>
+</div>
 
         <div className="mb-4">
           <h4 className="font-semibold mb-2">Categories</h4>
@@ -171,11 +169,11 @@ export default function CakePage() {
               </div>
               <div className="text-center flex justify-center items-center space-x-2 text-gray-600">
                 <FaStore />
-                <p>Shop: {product.userId?.username}</p> 
+                <p>Shop: {product.userId?.username}</p>
               </div>
               <div className="flex justify-center mt-4 space-x-2">
                 <button
-                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all"
+                  className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-700 transition-all"
                   onClick={() => handleAddToCart(product)}
                 >
                   <FaShoppingCart className="inline mr-2" /> Add to Cart

@@ -109,12 +109,13 @@ export default function PostSweet() {
         </div>
         <div className="sm:w-2/3">
           <img src={product.images[mainImageIndex]} alt={product.title} className="w-full h-82 object-cover" data-aos="zoom-in" />
+          <h1 className="text-3xl text-pink-300 my-7 font-semibold" data-aos="fade-left">{product.userId.username}</h1>
           <h1 className="text-3xl my-7 font-semibold" data-aos="fade-left">{product.title}</h1>
           <div className="flex items-center mt-4 gap-2" data-aos="fade-right">
             <div className="gap-4 sm:flex-row justify-between mt-4">
               Price: Rs. {product.price}
             </div>
-            <Button className="bg-slate-400" onClick={() => handleQuantityChange(-1)}>
+            <Button className="bg-pink-400" onClick={() => handleQuantityChange(-1)}>
               <FaMinus />
             </Button>
             <TextInput
@@ -124,7 +125,7 @@ export default function PostSweet() {
               onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value)))}
               className="w-16 text-center"
             />
-            <Button className="bg-slate-400" onClick={() => handleQuantityChange(1)}>
+            <Button className="bg-pink-400" onClick={() => handleQuantityChange(1)}>
               <FaPlus />
             </Button>
           </div>
@@ -132,7 +133,7 @@ export default function PostSweet() {
 
           <div className="flex justify-center gap-4 mt-4" data-aos="fade-up">
             <button
-              className="block w-full text-center py-2 mt-2 bg-slate-200 border border-slate-200 text-black hover:bg-slate-400 rounded hover:border-slate-300 hover:text-white hover:font-semibold"
+              className="block w-full text-center py-2 mt-2 bg-pink-400 border border-pink-200 text-black hover:bg-pink-600 rounded hover:border-pink-300 hover:text-white hover:font-semibold"
               onClick={handleAddToCart}
             >
               Add to Cart
