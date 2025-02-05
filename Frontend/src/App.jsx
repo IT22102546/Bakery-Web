@@ -55,6 +55,7 @@ export default function App() {
         <Route path="/signupshops" element={<ShopSignUp/>}/>
         <Route path="/blogs/:slug" element={<BlogDetails />} />
         <Route path="/blogs" element={<Blogs/>} />
+        <Route path="/cake/:cakeSlug" element={<PostCake/>} />
         
 
 
@@ -73,7 +74,6 @@ export default function App() {
 
       <Route element={<OnlyAdminPrivateRoute/>}>
           <Route path="/addcake" element={<AddCakes/>} />
-          <Route path="/cake/:cakeSlug" element={<PostCake/>} />
           <Route path="/sweet/:sweetSlug" element={<PostSweet/>} />
           <Route path="/update-cake/:productId" element={<UpdateCake/>}/>
           <Route path="/update-sweet/:productId" element={<UpdateSweet/>}/>
